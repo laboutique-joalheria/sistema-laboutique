@@ -1,0 +1,86 @@
+/* =====================================================================
+   LAPIDAR · movimento
+   Regra: tudo aqui só existe sob html.efeitos-on. Sem JS, com "Pausar efeitos"
+   ou com redução de movimento no aparelho, a tela aparece completa e parada.
+   Anima só transform e opacity. Nada de movimento atrás de números de caixa.
+   ===================================================================== */
+
+@keyframes entrar { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes encaixar { /* cartões entram como facetas encaixando */
+  from { opacity: 0; transform: perspective(900px) rotateX(-14deg) translateY(16px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes gaveta-in { from { transform: perspective(1400px) translateX(60px) rotateY(-8deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes folha-in { from { transform: perspective(1600px) translateY(40px) rotateX(6deg) scale(.985); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes pop-in { from { transform: translateX(-50%) translateY(-8px) scale(.97); opacity: 0; } to { transform: translateX(-50%); opacity: 1; } }
+@keyframes pop-in-baixo { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes veu-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes toast-in { from { transform: translateY(16px) scale(.96); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes reflexo { from { transform: translateX(-120%); } to { transform: translateX(120%); } }
+@keyframes pulsar { 0%, 100% { transform: rotate(45deg) scale(1); } 50% { transform: rotate(45deg) scale(1.35); } }
+@keyframes crescer-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes crescer-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes linha-corre { from { transform: scaleX(0); opacity: 1; } 70% { opacity: 1; } to { transform: scaleX(1); opacity: 0; } }
+@keyframes total-sobe { 0% { transform: translateY(6px); opacity: .2; } 100% { transform: none; opacity: 1; } }
+@keyframes balanco { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes facho { from { opacity: 0; transform: translateX(-30%) scaleX(.6); } to { opacity: 1; transform: none; } }
+
+.efeitos-on .vista.entrando > * { animation: entrar var(--t-3) var(--ease) both; animation-delay: calc(var(--i, 0) * 45ms); }
+.efeitos-on .vista.entrando .kpi,
+.efeitos-on .vista.entrando .produto,
+.efeitos-on .vista.entrando .coluna-k,
+.efeitos-on .vista.entrando .pergunta { animation: encaixar var(--t-3) var(--ease) both; animation-delay: calc(80ms + var(--i, 0) * 55ms); }
+.efeitos-on .vista.entrando .atencao-item { animation: entrar var(--t-3) var(--ease) both; animation-delay: calc(160ms + var(--i, 0) * 40ms); }
+
+.efeitos-on .gaveta { animation: gaveta-in 420ms var(--ease) both; }
+.efeitos-on .folha { animation: folha-in 460ms var(--ease) both; }
+.efeitos-on .modal, .efeitos-on .paleta { animation: pop-in 260ms var(--ease) both; }
+.efeitos-on .veu { animation: veu-in 220ms ease both; }
+.efeitos-on .toast { animation: toast-in 320ms var(--ease) both; }
+.efeitos-on .popover, .efeitos-on .tour-balao { animation: pop-in-baixo 300ms var(--ease) both; }
+.efeitos-on .folha-etapa.trocou > * { animation: entrar 380ms var(--ease) both; animation-delay: calc(var(--i, 0) * 40ms); }
+.efeitos-on .paleta-op { animation: entrar 260ms var(--ease) both; animation-delay: calc(var(--i, 0) * 18ms); }
+.efeitos-on .paleta .linha-busca { position: relative; }
+.efeitos-on .paleta .linha-busca::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: linear-gradient(90deg, var(--safira), var(--ametista), var(--ouro)); transform-origin: left; animation: linha-corre 700ms var(--ease) both; }
+.efeitos-on .resumo-total .grande strong.mudou { animation: total-sobe 320ms var(--ease); }
+.efeitos-on .item-carrinho.novo { animation: encaixar 420ms var(--ease) both; }
+
+/* Reflexo atravessando o botão de ouro no hover (só com mouse). */
+@media (hover: hover) and (pointer: fine) {
+  .efeitos-on .btn.ouro:hover::after { animation: reflexo 900ms var(--ease) both; }
+}
+.efeitos-on .nav-item[aria-current="page"]::before { animation: pulsar 2.4s var(--ease-io) infinite; }
+
+/* Barras de gráfico crescem quando entram na tela. */
+.efeitos-on [data-revelar] .barra-h .trilha span,
+.efeitos-on [data-revelar] .coluna-barra { transform: scaleX(0); }
+.efeitos-on [data-revelar] .coluna-barra { transform: scaleY(0); transform-origin: bottom; transform-box: fill-box; }
+.efeitos-on [data-revelar].revelado .barra-h .trilha span { animation: crescer-x 900ms var(--ease) both; animation-delay: calc(var(--i, 0) * 70ms); }
+.efeitos-on [data-revelar].revelado .coluna-barra { animation: crescer-y 800ms var(--ease) both; animation-delay: calc(var(--i, 0) * 35ms); }
+
+/* 3D na rolagem: roda no compositor, só onde o navegador suporta. */
+@supports (animation-timeline: view()) {
+  .efeitos-on .pergunta.rolagem-3d {
+    animation: encaixar linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+}
+
+/* Inclinação com luz seguindo o ponteiro (classe aplicada pelo motion.js, só mouse). */
+.efeitos-on [data-inclinar] { transition: transform 220ms var(--ease), border-color var(--t-1), background var(--t-1); }
+.efeitos-on [data-inclinar].inclinando {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+}
+.efeitos-on [data-inclinar]::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--ouro) 14%, transparent), transparent 60%);
+  transition: opacity var(--t-2);
+}
+.efeitos-on [data-inclinar].inclinando::after { opacity: 1; }
+
+.efeitos-on .vazio .ico.lg { animation: balanco 3s var(--ease-io) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "lapidar",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Demonstração do Lapidar: gestão de joalheria e ótica.",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "servir": "python3 -m http.server 8765",
+    "e2e": "node tests/navegador.e2e.js && node tests/importacao.e2e.js"
+  }
+}

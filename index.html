@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lapidar</title>
+<meta name="description" content="Lapidar: gestão de joalheria e ótica em um só lugar. Demonstração navegável com dados fictícios.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#080C15">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400..800&display=swap">
+<link rel="stylesheet" href="css/styles.css?v=2">
+<link rel="stylesheet" href="css/motion.css?v=2">
+<script>
+/* Antes da pintura: aplica o tema salvo e liga ou pausa os efeitos, para a tela não piscar. */
+(function () {
+  var d = document.documentElement, t = null, e = null;
+  try { t = localStorage.getItem('lapidar.tema'); e = localStorage.getItem('lapidar.efeitos'); } catch (x) {}
+  if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t);
+  var reduz = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  d.classList.add(e === '0' || (e === null && reduz) ? 'efeitos-off' : 'efeitos-on');
+})();
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-gema" viewBox="0 0 24 24"><path d="M6 3.5h12l4 5.5-10 11.5L2 9z"/><path d="M2 9h20M8.5 3.5 7 9l5 11.5L17 9l-1.5-5.5M7 9l5-5.5L17 9"/></symbol>
+    <symbol id="i-hoje" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5.5h4V20"/></symbol>
+    <symbol id="i-clientes" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20.5v-1a6.5 6.5 0 0 1 13 0v1"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.3a6.5 6.5 0 0 1 3 5.2v1"/></symbol>
+    <symbol id="i-vendas" viewBox="0 0 24 24"><path d="M4.5 8h15l-1.2 12.5H5.7z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></symbol>
+    <symbol id="i-pedidos" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2.8h6V4M9 10h6M9 14h6M9 18h3"/></symbol>
+    <symbol id="i-produtos" viewBox="0 0 24 24"><path d="M3 12.5V4h8.5L21 13.5 13.5 21z"/><circle cx="7.5" cy="8.5" r="1.6"/></symbol>
+    <symbol id="i-financeiro" viewBox="0 0 24 24"><path d="M18.5 7.5V5.2a1.2 1.2 0 0 0-1.2-1.2H5.5a2.5 2.5 0 0 0 0 5h15V20H5.5A2.5 2.5 0 0 1 3 17.5v-11"/><path d="M16 14.5h1.5"/></symbol>
+    <symbol id="i-agenda" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h2M12 14h2M8 17h2"/></symbol>
+    <symbol id="i-relatorios" viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M7 16v-5M12 16V6M17 16v-8"/></symbol>
+    <symbol id="i-ajustes" viewBox="0 0 24 24"><path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+    <symbol id="i-busca" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></symbol>
+    <symbol id="i-sino" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2H4.5z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></symbol>
+    <symbol id="i-lua" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+    <symbol id="i-som" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+    <symbol id="i-mudo" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="m16 9.5 5 5M21 9.5l-5 5"/></symbol>
+    <symbol id="i-efeitos" viewBox="0 0 24 24"><path d="m11 3 1.8 4.7 4.7 1.8-4.7 1.8L11 16l-1.8-4.7-4.7-1.8 4.7-1.8z"/><path d="m18.5 14.5.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></symbol>
+    <symbol id="i-pausa" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="i-mais" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-menos" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+    <symbol id="i-dir" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-esq" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+    <symbol id="i-baixo" viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></symbol>
+    <symbol id="i-seta-dir" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-whats" viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.4 7.6L3.5 20.5l1.4-4.4a8.5 8.5 0 1 1 15.6-4.6z"/><path d="M9 8.5c.2 2.6 3.6 6 6.3 6.4l1-1.3-1.8-1-.9.8a5.7 5.7 0 0 1-2.5-2.5l.8-.9-1-1.8z"/></symbol>
+    <symbol id="i-alerta" viewBox="0 0 24 24"><path d="M12 3.5 21.5 20h-19z"/><path d="M12 10v4.5M12 17.2v.1"/></symbol>
+    <symbol id="i-relogio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-presente" viewBox="0 0 24 24"><rect x="3.5" y="9" width="17" height="11.5" rx="1.5"/><path d="M2.5 9h19M12 9v11.5M12 9C10 4 6 5 7 7.5 7.7 9 12 9 12 9zm0 0c2-5 6-4 5-1.5C16.3 9 12 9 12 9z"/></symbol>
+    <symbol id="i-olho" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-caixa" viewBox="0 0 24 24"><path d="m12 3 8.5 4.5v9L12 21l-8.5-4.5v-9z"/><path d="m3.5 7.5 8.5 4.5 8.5-4.5M12 12v9"/></symbol>
+    <symbol id="i-moeda" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.2c-.5-.9-1.6-1.4-2.8-1.4-1.6 0-2.8.8-2.8 2.1 0 3 5.8 1.4 5.8 4.3 0 1.3-1.3 2.1-3 2.1-1.3 0-2.4-.6-2.9-1.5M12 6v1.8M12 16.3V18"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8.5L19 7.5V21H6z"/><path d="M14 3v5h5M9 12h7M9 16h5"/></symbol>
+    <symbol id="i-retirada" viewBox="0 0 24 24"><path d="m12 3 8.5 4.5v5M3.5 7.5v9L12 21l2-1"/><path d="m3.5 7.5 8.5 4.5 8.5-4.5M12 12v9"/><path d="m15.5 18 2 2 4-4.5"/></symbol>
+    <symbol id="i-pix" viewBox="0 0 24 24"><path d="M12 2.8 21.2 12 12 21.2 2.8 12z"/><path d="M7.5 12 12 7.5l4.5 4.5L12 16.5z"/></symbol>
+    <symbol id="i-cartao" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 9.5h19M6 15h4"/></symbol>
+    <symbol id="i-dinheiro" viewBox="0 0 24 24"><rect x="2.5" y="6.5" width="19" height="11" rx="1.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9.5v5M18 9.5v5"/></symbol>
+    <symbol id="i-parcelas" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16.5" rx="2"/><path d="M3 9h18M7.5 13h2M11 13h2M14.5 13h2M7.5 16.5h2M11 16.5h2"/></symbol>
+    <symbol id="i-copiar" viewBox="0 0 24 24"><rect x="8" y="8" width="12.5" height="12.5" rx="2"/><path d="M5.5 15.5h-1A1.5 1.5 0 0 1 3 14V5a1.5 1.5 0 0 1 1.5-1.5H14A1.5 1.5 0 0 1 15.5 5v1"/></symbol>
+    <symbol id="i-imprimir" viewBox="0 0 24 24"><path d="M7 8V3.5h10V8"/><rect x="3" y="8" width="18" height="8.5" rx="1.5"/><path d="M7 13.5h10v7H7z"/></symbol>
+    <symbol id="i-sair" viewBox="0 0 24 24"><path d="M14 4.5h4.5A1.5 1.5 0 0 1 20 6v12a1.5 1.5 0 0 1-1.5 1.5H14"/><path d="M10 8l-4 4 4 4M6 12h10"/></symbol>
+    <symbol id="i-usuario-mais" viewBox="0 0 24 24"><circle cx="9.5" cy="8" r="3.5"/><path d="M3 20.5v-1a6.5 6.5 0 0 1 10.5-5.1M18.5 13v7M15 16.5h7"/></symbol>
+    <symbol id="i-grade" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></symbol>
+    <symbol id="i-lista" viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.1M4.5 12h.1M4.5 17.5h.1"/></symbol>
+    <symbol id="i-baixar" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M4.5 20h15"/></symbol>
+    <symbol id="i-tel" viewBox="0 0 24 24"><path d="M5 4h3.5l1.5 4.5-2.2 1.3a10.5 10.5 0 0 0 6.4 6.4l1.3-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></symbol>
+    <symbol id="i-bancada" viewBox="0 0 24 24"><path d="m14.5 4.5 5 5-2.5 2.5-5-5z"/><path d="M13.3 8.7 4 18a1.6 1.6 0 0 0 2.3 2.3l9.3-9.3"/></symbol>
+    <symbol id="i-lab" viewBox="0 0 24 24"><path d="M9.5 3.5h5M10.5 3.5v6L5 19a1.3 1.3 0 0 0 1.2 1.9h11.6A1.3 1.3 0 0 0 19 19l-5.5-9.5v-6"/><path d="M7.3 15h9.4"/></symbol>
+    <symbol id="i-arrastar" viewBox="0 0 24 24"><path d="M9 6h.1M15 6h.1M9 12h.1M15 12h.1M9 18h.1M15 18h.1"/></symbol>
+    <symbol id="i-teclado" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h.1M10 10h.1M14 10h.1M18 10h.1M7 14h10"/></symbol>
+    <symbol id="i-lixo" viewBox="0 0 24 24"><path d="M4.5 6.5h15M9.5 6.5V4h5v2.5M6.5 6.5l1 14h9l1-14"/></symbol>
+    <symbol id="i-restaurar" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.5"/><path d="M4 3.5v5h5"/></symbol>
+
+    <!-- Desenhos técnicos em linha para o catálogo (sem foto real, desenho do próprio objeto). -->
+    <symbol id="d-anel" viewBox="0 0 120 90"><ellipse cx="60" cy="60" rx="30" ry="21"/><ellipse cx="60" cy="60" rx="23.5" ry="15.5"/><path d="M49 25h22l7 9-18 16-18-16z"/><path d="M42 34h36M55 25l-4 9 9 16 9-16-4-9"/><path d="M47 41l-2 8M73 41l2 8"/></symbol>
+    <symbol id="d-aliancas" viewBox="0 0 120 90"><ellipse cx="47" cy="47" rx="24" ry="26"/><ellipse cx="47" cy="47" rx="19" ry="21"/><ellipse cx="73" cy="47" rx="24" ry="26"/><ellipse cx="73" cy="47" rx="19" ry="21"/><path d="M85 22l3-6M90 26l6-2M88 19l1-1" stroke-dasharray="2 3"/></symbol>
+    <symbol id="d-brinco" viewBox="0 0 120 90"><circle cx="44" cy="54" r="21"/><circle cx="44" cy="54" r="17"/><path d="M44 33v-14"/><circle cx="84" cy="38" r="8"/><path d="M79 33l10 10M89 33 79 43M84 46v9M80 55h8"/></symbol>
+    <symbol id="d-colar" viewBox="0 0 120 90"><path d="M14 12c4 42 88 42 92 0" stroke-dasharray="3 4"/><path d="M60 48v4"/><path d="M60 52l9 11-9 15-9-15z"/><path d="M51 63h18M60 52v26"/></symbol>
+    <symbol id="d-pingente" viewBox="0 0 120 90"><path d="M20 10c10 22 70 22 80 0" stroke-dasharray="3 4"/><circle cx="60" cy="31" r="4.5"/><path d="M60 82S37 68 37 52a11.5 11.5 0 0 1 23-4 11.5 11.5 0 0 1 23 4c0 16-23 30-23 30z"/><path d="M52 50a5 5 0 0 1 6-3"/></symbol>
+    <symbol id="d-pulseira" viewBox="0 0 120 90"><ellipse cx="60" cy="46" rx="44" ry="22"/><ellipse cx="60" cy="46" rx="37" ry="16"/><circle cx="23" cy="44" r="2.5"/><circle cx="34" cy="58" r="2.5"/><circle cx="50" cy="63" r="2.5"/><circle cx="68" cy="63" r="2.5"/><circle cx="85" cy="58" r="2.5"/><circle cx="97" cy="44" r="2.5"/></symbol>
+    <symbol id="d-relogio" viewBox="0 0 120 90"><path d="M49 28l3-20h16l3 20M49 62l3 20h16l3-20"/><circle cx="60" cy="45" r="20"/><circle cx="60" cy="45" r="15.5"/><path d="M60 45V35M60 45l7 4M60 31.5v1.5M73.5 45H72M46.5 45H48M60 58.5V57"/><path d="M80 45h4"/></symbol>
+    <symbol id="d-armacao" viewBox="0 0 120 90"><rect x="13" y="32" width="39" height="29" rx="10"/><rect x="68" y="32" width="39" height="29" rx="10"/><path d="M52 41c4-5 12-5 16 0M13 38 3 34M107 38l10-4"/><path d="M18 68h29M73 68h29" stroke-dasharray="2 3"/><path d="M18 66v4M47 66v4M73 66v4M102 66v4"/></symbol>
+    <symbol id="d-sol" viewBox="0 0 120 90"><path class="tinta" d="M13 33h39c0 18-8 29-20 29S13 51 13 33zM68 33h39c0 18-8 29-20 29s-19-11-19-29z"/><path d="M52 37c4-3 12-3 16 0M10 29h100"/><path d="M22 40l12 12M78 40l12 12"/></symbol>
+    <symbol id="d-lente" viewBox="0 0 120 90"><path d="M52 12c15 21 15 45 0 66M64 12c-11 21-11 45 0 66M52 12h12M52 78h12"/><path d="M6 30h44M6 45h44M6 60h44" stroke-dasharray="2 3"/><path d="M66 30l48 15M66 60l48-15M66 45h48"/></symbol>
+    <symbol id="d-contato" viewBox="0 0 120 90"><path d="M34 48c0-15 12-26 26-26s26 11 26 26"/><path d="M34 48c9 5 43 5 52 0"/><path d="M42 44c3-9 10-14 18-14" stroke-dasharray="2 3"/><rect x="24" y="60" width="72" height="20" rx="3"/><path d="M34 70h24"/></symbol>
+    <symbol id="d-frasco" viewBox="0 0 120 90"><path d="M52 8h16v10l7 9v50a4 4 0 0 1-4 4H49a4 4 0 0 1-4-4V27l7-9z"/><path d="M45 40h30M45 64h30M52 18h16"/><path d="M53 48h14M53 54h9"/></symbol>
+    <symbol id="d-chimarrao" viewBox="0 0 120 90"><ellipse cx="58" cy="38" rx="25" ry="7"/><path d="M33 38c0 24 10 42 25 42s25-18 25-42"/><path d="M38 38c5-3 35-3 40 0" stroke-dasharray="2 3"/><path d="M50 80h16"/><path d="M62 36 86 6M83 4l7 5"/><circle cx="62" cy="36" r="3"/></symbol>
+    <symbol id="d-servico" viewBox="0 0 120 90"><circle cx="50" cy="40" r="21"/><circle cx="50" cy="40" r="16"/><path d="m65 55 24 24"/><path d="M44 34h12l3.5 4.5L50 48l-9.5-9.5z"/><path d="M40.5 38.5h19"/></symbol>
+  </defs>
+</svg>
+
+<noscript><p style="padding:24px">O Lapidar precisa de JavaScript ligado para funcionar.</p></noscript>
+
+<!-- ========================= ENTRADA ========================= -->
+<section id="entrada" class="entrada-tela" aria-labelledby="entrada-titulo">
+  <div class="entrada-arte">
+    <canvas id="gema-entrada" aria-hidden="true"></canvas>
+    <a class="marca" href="#hoje"><svg class="ico"><use href="#i-gema"/></svg><span>Lapidar</span></a>
+    <div class="entrada-texto">
+      <p class="rotulo" style="margin-bottom:16px">Joalheria &amp; Ótica · gestão</p>
+      <h1 id="entrada-titulo" class="entrada-titulo">Do atendimento à entrega, <em>lapidado.</em></h1>
+      <p class="entrada-sub">Clientes, vendas, pedidos de óculos e serviços de joia num lugar só. Abriu, já sabe o que fazer hoje.</p>
+    </div>
+    <div class="entrada-rodape"><span>Feito para La Boutique Joalheria e Óptica</span><span>Ijuí · RS</span></div>
+  </div>
+  <div class="entrada-lado">
+    <div class="entrada-form">
+      <p class="rotulo">Demonstração</p>
+      <h2>Entrar como…</h2>
+      <p class="muted">Cada função vê só o que precisa. Escolha um perfil para conhecer o sistema.</p>
+      <div id="perfis" style="display:grid;gap:10px"></div>
+      <p class="aviso-demo"><svg class="ico sm"><use href="#i-alerta"/></svg><span id="aviso-dados">Dados fictícios. Nada aqui sai do seu navegador.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= SISTEMA ========================= -->
+<div id="app" class="app" hidden>
+  <aside class="trilho" aria-label="Menu principal">
+    <a class="marca" href="#hoje" data-ir="hoje"><svg class="ico"><use href="#i-gema"/></svg><span>Lapidar</span></a>
+    <div class="loja-chip"><span class="avatar" style="--av:var(--ouro)">LB</span><div><strong id="loja-nome"></strong><small id="loja-unidade"></small></div></div>
+    <nav class="nav" id="nav"></nav>
+    <div class="trilho-fim">
+      <div class="usuario"><span class="avatar" id="usuario-avatar"></span><div><strong id="usuario-nome"></strong><small id="usuario-perfil"></small></div><button class="btn icone" id="sair" aria-label="Sair e trocar de perfil" title="Trocar perfil"><svg class="ico"><use href="#i-sair"/></svg></button></div>
+    </div>
+  </aside>
+
+  <div class="principal">
+    <header class="topo">
+      <h1 class="titulo-pag" id="titulo-pag"></h1>
+      <button class="busca-gatilho" id="abrir-busca" aria-label="Buscar cliente, produto ou pedido (Ctrl+K)"><svg class="ico"><use href="#i-busca"/></svg><span>Buscar cliente, produto, pedido ou ação…</span><kbd>Ctrl K</kbd></button>
+      <div class="topo-acoes">
+        <button class="btn icone sino" id="abrir-sino" aria-label="Pendências" aria-haspopup="true"><svg class="ico"><use href="#i-sino"/></svg><span class="bolha" id="sino-bolha" hidden></span></button>
+        <button class="btn icone" id="alternar-tema" aria-label="Alternar tema claro e escuro"><svg class="ico"><use href="#i-sol"/></svg></button>
+        <button class="btn icone" id="alternar-som" aria-label="Sons" aria-pressed="true"><svg class="ico"><use href="#i-som"/></svg></button>
+        <button class="btn icone some-celular" id="alternar-efeitos" aria-label="Efeitos de movimento" aria-pressed="true"><svg class="ico"><use href="#i-efeitos"/></svg></button>
+        <button class="btn ouro" id="vender-topo"><svg class="ico"><use href="#i-vendas"/></svg>Vender</button>
+      </div>
+    </header>
+    <main id="vista" class="vista" tabindex="-1"></main>
+  </div>
+
+  <nav class="nav-inferior" id="nav-inferior" aria-label="Menu"></nav>
+</div>
+
+<div id="camadas"></div>
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script src="js/regras/dinheiro.js?v=2"></script>
+<script src="js/regras/datas.js?v=2"></script>
+<script src="js/regras/busca.js?v=2"></script>
+<script src="js/regras/venda.js?v=2"></script>
+<script src="js/regras/pedidos.js?v=2"></script>
+<script src="js/regras/csv.js?v=2"></script>
+<script src="js/regras/atencao.js?v=2"></script>
+<script src="js/regras/importacao.js?v=2"></script>
+<script src="js/data.js?v=2"></script>
+<script src="js/som.js?v=2"></script>
+<script src="js/motion.js?v=2"></script>
+<script src="js/nucleo.js?v=2"></script>
+<script src="js/telas/hoje.js?v=2"></script>
+<script src="js/telas/clientes.js?v=2"></script>
+<script src="js/telas/vendas.js?v=2"></script>
+<script src="js/telas/pedidos.js?v=2"></script>
+<script src="js/telas/produtos.js?v=2"></script>
+<script src="js/telas/financeiro.js?v=2"></script>
+<script src="js/telas/agenda.js?v=2"></script>
+<script src="js/telas/relatorios.js?v=2"></script>
+<script src="js/telas/ajustes.js?v=2"></script>
+<script src="js/telas/importar.js?v=2"></script>
+<script src="js/venda.js?v=2"></script>
+<script src="js/iniciar.js?v=2"></script>
+</body>
+</html>

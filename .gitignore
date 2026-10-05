@@ -1,0 +1,6 @@
+node_modules/
+# Relatórios reais da loja têm dados pessoais (LGPD): nunca versionar.
+*.pdf
+*.PDF
+relatorios/
+.DS_Store
