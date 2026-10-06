@@ -16,7 +16,7 @@ O site é estático (HTML, CSS e JS puros, sem build). Ele é publicado pelo Git
 
 O domínio próprio não é só estética. Os sites de uma mesma conta ou organização no `github.io` dividem a mesma origem e enxergariam os dados que a loja guarda no navegador. Por isso o sistema mora na organização da loja (`laboutique-joalheria`) e vai para domínio próprio.
 
-Até o domínio ficar pronto, o endereço provisório é `https://laboutique-joalheria.github.io/sistema-laboutique/`. Use-o só para demonstração, nunca com dados reais.
+**Situação atual:** a loja ainda não tem domínio. Ele será registrado (registro.br) quando a loja aprovar o sistema, antes de entrar com dados reais. Até lá, o endereço é `https://laboutique-joalheria.github.io/sistema-laboutique/`, só para demonstração com os exemplos.
 
 ## Abrir no computador
 
